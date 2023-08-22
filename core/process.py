@@ -2,15 +2,10 @@ import requests
 
 class main:
 
+    # Read Lines
     def read_payload():
-        file_path = "XSS-Latest.txt"
-
-        with open(file_path, "r") as file1:
-            Lines = file1.readlines()
-            for line in Lines:
-                return Lines
-                 
-
+        # Code Here       
+    # ====
      
 
-print(main.read_payload())
+# print(main.read_payload())
