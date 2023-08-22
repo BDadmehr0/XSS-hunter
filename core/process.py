@@ -1,4 +1,4 @@
 
 
-def (input_b):
+def attack(input_b):
     return input_b
