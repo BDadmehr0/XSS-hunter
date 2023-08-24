@@ -3,9 +3,25 @@ import platform
 import os
 import re
 import requests
-
-from core.process import attack
 from colorama import Fore as F
+
+class Main:
+
+    @staticmethod
+    def check_payload(url, payload):
+        payload_url = url + payload
+        s = response = requests.get(payload_url)
+        return s
+
+    @staticmethod
+    def read_payload():
+        try:
+            with open("XSS-Latest.txt", 'r', encoding='utf-8') as file:
+                lines = file.readlines()
+                return lines
+        except FileNotFoundError:
+            print("File not found")
+            return []
 
 def validate_URL(url):
     """Sends a request with a timeout.
@@ -48,16 +64,22 @@ def main():
     if args.target_URL:
         res = str(validate_URL(url=url))
         if res == '<Response [200]>':
-            # print(f"{url} is a standard URL.")
-            a = attack(input_b=url)
-            print(a)
+            print('CTRL+C for Exit')
+            try:
+                main_instance = Main()  # Create an instance of the Main class
+                lines = main_instance.read_payload()  # Call read_payload on the instance
+
+                for line in lines:
+                    a = main_instance.check_payload(url=args.target_URL, payload=line.strip())  # Pass payload to check_payload
+                    print(a)
+            except KeyboardInterrupt:
+                exit()
         else:
-            print(F.RED+f'The request failed with status code {res}.')
+            print(F.RED + f'The request failed with status code {res}.')
     else:
-        print(F.RED+'Error: please see HELP with "-h" flag')
+        print(F.RED + 'Error: please see HELP with "-h" flag')
 
 if __name__ == '__main__':
-    system_guard()
+    # system_guard()
     banner()
     main()
-
