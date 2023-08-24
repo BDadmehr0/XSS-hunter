@@ -4,8 +4,10 @@ class main:
 
     # Read Lines
     def read_payload():
-        # Code Here       
-    # ====
-     
+        path_file = './core/XSS-Latest.txt'
+        file_content = open(path_file)
+        for i in file_content:
+            return i
 
-# print(main.read_payload())
+while True:
+    print(main.read_payload())
