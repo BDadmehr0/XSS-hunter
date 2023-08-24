@@ -80,6 +80,6 @@ def main():
         print(F.RED + 'Error: please see HELP with "-h" flag')
 
 if __name__ == '__main__':
-    # system_guard()
+    system_guard()
     banner()
     main()
